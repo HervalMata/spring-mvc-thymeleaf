@@ -1,0 +1,25 @@
+.navbar-brand {
+	padding: 12px;
+};
+
+img-logo {
+	width: 100px;
+	height: 40px;
+}
+
+.panel-default{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.alert {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.panel-btn {
+	float: right;
+}
+
+
+
