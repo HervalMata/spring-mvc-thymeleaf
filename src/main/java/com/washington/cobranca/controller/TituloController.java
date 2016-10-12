@@ -40,28 +40,33 @@ public class TituloController {
 		if(erros.hasErrors()) {
 			return CADASTRO_VIEW;
 		}
-		
-		
 		titulos.save(titulo);
 		redirectAttributes.addFlashAttribute("message","Titulo salvo com sucesso!");
 		return "redirect:/titulos/novo";
 	}
 	
-	@RequestMapping("/pesquisa")
-	public ModelAndView pesquisarTitulo() {
+	@RequestMapping()
+	public ModelAndView pesquisa() {		
 		ModelAndView mv = new ModelAndView("PesquisaTitulo");		
-		mv.addObject("Titulos", titulos.findAll().toArray());
+		mv.addObject("titulos", titulos.findAll().toArray());
 		return mv;
 	}
 	
-	@RequestMapping("{codigo}") 
-	public ModelAndView edicao(@PathVariable Long codigo) {
-		
-		Titulo titulo = titulos.findOne(codigo);
+	@RequestMapping("{idTitulo}") 
+	public ModelAndView edicao(@PathVariable("idTitulo") Titulo titulo) {
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(titulo);		
 		return mv;
 	}
+	
+	@RequestMapping(value="{idtitulo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long idtitulo, RedirectAttributes attributes) {		
+		titulos.delete(idtitulo);
+		
+		attributes.addFlashAttribute("message", "Título excluído com sucesso!");
+		return "redirect:/titulos";
+	}
+	
 	
 	@ModelAttribute("StatusTitulo")
 	public List<StatusTitulo> todosStatusTitulo() {

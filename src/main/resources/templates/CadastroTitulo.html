@@ -10,29 +10,24 @@
 	<form class="form-horizontal" method="POST" action="/titulos"
 		th:object="${titulo}">
 
-		<div th:if="${!#strings.isEmpty(message)}"
-			class="alert alert-success alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<span th:text="${message}">Titulo cadastrado com sucesso!!!!</span>
-		</div>
-
 		
-		<div layout:include="Mensagem"></div>
+		
+		<div layout:include="MensagemErro"></div>
+		<div layout:include="MensagemGeral"></div>
 
 		<div class="panel panel-default">
 			<div class="clearfix panel-heading">
 				<h1 style="float: left;" class="panel-title">Novo título</h1>
 				<div class="btn-link" style="float: right;">
-					<a href="/titulos/pesquisa">Pesquisa de títulos</a>
+					<a href="/titulos">Pesquisa de títulos</a>
 				</div>
 			</div>
 			<br />
 
 
 			<div class="panel-body">
+			
+			<input type="hidden" th:field="*{idTitulo}" />
 
 				<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? 'has-error'">
 					<label for="descricao" class="col-sm-2 control-label">Descrição</label>
